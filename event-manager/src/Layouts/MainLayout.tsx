@@ -1,21 +1,30 @@
-import React from 'react';
-import Footer from '../Components/Footer';
-import Sidebar from '../Components/Sidebar';
-import Header from '../Components/Header';
+import React from "react";
+import { Outlet } from "react-router-dom";
 
-interface Props {
-  children: React.ReactNode;
-}
-
-const MainLayout: React.FC<Props> = ({ children }) => {
+const MainLayout: React.FC = () => {
   return (
-    <div className="main-layout">
-      <Header />
-      <div className="main-content">
-        <Sidebar />
-        <div className="content">{children}</div>
-      </div>
-      <Footer />
+    <div>
+      {/* Header */}
+      <header>
+        <nav>
+          <h1>Event Management</h1>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/schedule">Schedule</a></li>
+            <li><a href="/forum">Forum</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* Main Content */}
+      <main>
+        <Outlet /> {/* Render các trang con */}
+      </main>
+
+      {/* Footer */}
+      <footer>
+        <p>© 2024 Event Management. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

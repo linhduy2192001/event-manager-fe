@@ -1,32 +1,15 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-const MainLayout: React.FC = () => {
+const AuthLayout: React.FC = () => {
   return (
-    <div>
-      {/* Header */}
-      <header>
-        <nav>
-          <h1>Event Management</h1>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/schedule">Schedule</a></li>
-            <li><a href="/forum">Forum</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      {/* Main Content */}
-      <main>
-        <Outlet /> {/* Render các trang con */}
-      </main>
-
-      {/* Footer */}
-      <footer>
-        <p>© 2024 Event Management. All rights reserved.</p>
-      </footer>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", justifyContent: "center", alignItems: "center" }}>
+      {/* Auth Content */}
+      <div style={{ maxWidth: "400px", width: "100%" }}>
+        <Outlet /> {/* Render trang đăng nhập hoặc đăng ký */}
+      </div>
     </div>
   );
 };
 
-export default MainLayout;
+export default AuthLayout;
