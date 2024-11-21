@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthLayout from './Layouts/AuthLayout';
 import DashboardLayout from './Layouts/DashboardLayout';
 import MainLayout from './Layouts/MainLayout';
-import EventLayout from './Layouts/EventLayout';
-import UserProfileLayout from './Layouts/UserProfileLayout';
-import ReportLayout from './Layouts/ReportLayout';
 
 
 const App: React.FC = () => {
@@ -41,36 +38,10 @@ const App: React.FC = () => {
             </MainLayout>
           }
         />
-        <Route
-          path="/events"
-          element={
-            <MainLayout>
-              <EventLayout>
-                <div>Event List Content</div>
-              </EventLayout>
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <MainLayout>
-              <UserProfileLayout>
-                <div>User Profile Content</div>
-              </UserProfileLayout>
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/reports"
-          element={
-            <MainLayout>
-              <ReportLayout>
-                <div>Reports Content</div>
-              </ReportLayout>
-            </MainLayout>
-          }
-        />
+     
+   
+     
+    
       </Routes>
     </Router>
   );
