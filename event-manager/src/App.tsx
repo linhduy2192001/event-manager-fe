@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AuthLayout from './Components/Layouts/AuthLayout';
-import DashboardLayout from './Components/Layouts/DashboardLayout';
-import MainLayout from './Components/Layouts/MainLayout';
-import EventLayout from './Components/Layouts/EventLayout';
-import UserProfileLayout from './Components/Layouts/UserProfileLayout';
-import ReportLayout from './Components/Layouts/ReportLayout';
+import AuthLayout from './Layouts/AuthLayout';
+import DashboardLayout from './Layouts/DashboardLayout';
+import MainLayout from './Layouts/MainLayout';
+import EventLayout from './Layouts/EventLayout';
+import UserProfileLayout from './Layouts/UserProfileLayout';
+import ReportLayout from './Layouts/ReportLayout';
 
 
 const App: React.FC = () => {
