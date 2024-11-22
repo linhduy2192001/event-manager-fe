@@ -30,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle, userEmail }) => {
 
       {/* Chính giữa: Logo */}
       <div style={{ textAlign: "center" }}>
-        <h1 style={{ fontSize: "30px", margin: 0 }}>
+        <h1 style={{ fontSize: "100px", margin: 0 }}>
           <span style={{ color: "blue" }}>T</span>
           <span style={{ color: "red" }}>D</span>
           <span style={{ color: "blue" }}>T</span>

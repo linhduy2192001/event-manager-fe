@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
     { title: "Personal", icon: "👤", link: "/detailPersonal" },
     { title: "Schedule", icon: "📅", link: "/schedule" },
     { title: "History", icon: "📖", link: "/history" },
-    { title: "Event", icon: "🎤", link: "/event" },
+    { title: "Event", icon: "🎤", link: "/ListEvent" },
     { title: "Notifications", icon: "🔔", link: "/notifications" },
     { title: "Feedback", icon: "⭐", link: "/feedback" },
   ];

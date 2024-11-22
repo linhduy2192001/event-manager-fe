@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import PersonalPage from "./pages/PersonalPage"; // Import PersonalPage
 import DetailPersonal from "./pages/DetailPersonal"; // Import DetailPersonal
+import ListEvent from "./pages/ListEvent";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="new" element={<PersonalPage />} />
           <Route path="edit" element={<PersonalPage />} />
           <Route path="detailPersonal" element={<DetailPersonal />} /> {/* Route Detail */}
+          <Route path="ListEvent" element={<ListEvent />}></Route>
         </Route>
 
         {/* Authentication Routes */}
@@ -28,6 +30,7 @@ const App: React.FC = () => {
 
         {/* Dashboard Routes */}
         <Route path="/dashboard" element={<DashboardLayout />}></Route>
+       
       </Routes>
     </Router>
   );
