@@ -1,11 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/HomePage.css"; // Import CSS
+import "../styles/HomePage.css";
 import { Carousel } from "react-bootstrap";
 
 const HomePage: React.FC = () => {
-  const navigate = useNavigate(); // Hook điều hướng
+  const navigate = useNavigate();
 
   const cards = [
     { title: "Personal", icon: "👤", link: "/detailPersonal" },
@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
     <div
       className="container my-5"
       style={{
-        paddingTop: "80px", // Đẩy nội dung xuống dưới header
+        paddingTop: "80px",
       }}
     >
       {/* Phần giới thiệu */}
@@ -54,7 +54,7 @@ const HomePage: React.FC = () => {
                 className="d-block w-100"
                 style={{
                   height: "400px",
-                  objectFit: "cover", // Đảm bảo hình ảnh không bị méo
+                  objectFit: "cover",
                 }}
               />
             </Carousel.Item>
@@ -86,13 +86,13 @@ const HomePage: React.FC = () => {
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
                 height: "240px",
                 width: "200px",
-                margin: "0 auto", // Căn giữa card
+                margin: "0 auto",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 backgroundColor: "#ffffff",
-                border: "1px solid #e0e0e0", // Viền nhẹ
+                border: "1px solid #e0e0e0",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.05)";
@@ -104,13 +104,13 @@ const HomePage: React.FC = () => {
                 e.currentTarget.style.boxShadow =
                   "0 4px 10px rgba(0, 0, 0, 0.1)";
               }}
-              onClick={() => navigate(card.link)} // Điều hướng khi click vào card
+              onClick={() => navigate(card.link)}
             >
               <div
                 style={{
-                  fontSize: "40px", // Icon kích thước vừa phải
+                  fontSize: "40px",
                   marginBottom: "15px",
-                  color: "#007bff", // Màu sắc icon
+                  color: "#007bff",
                 }}
               >
                 {card.icon}
@@ -131,7 +131,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Sự kiện đang diễn ra */}
       <section className="mb-5">
         <h2 className="text-center mb-4" style={{ fontSize: "28px" }}>
           Ongoing Events
@@ -152,38 +151,38 @@ const HomePage: React.FC = () => {
               style={{
                 borderRadius: "15px",
                 width: "300px",
-                height: "380px", // Tăng chiều cao để phù hợp với padding
+                height: "380px",
                 overflow: "hidden",
                 cursor: "pointer",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                padding: "10px", // Padding bên trong thẻ
+                padding: "10px",
               }}
             >
               <div
                 style={{
-                  width: "100%", // Chiếm toàn bộ chiều ngang
-                  height: "200px", // Chiều cao cố định
-                  overflow: "hidden", // Ẩn phần hình ảnh vượt quá khung
-                  borderRadius: "10px", // Bo góc hình ảnh
+                  width: "100%",
+                  height: "200px",
+                  overflow: "hidden",
+                  borderRadius: "10px",
                 }}
               >
                 <img
                   src={event.image}
                   alt={event.title}
                   style={{
-                    width: "100%", // Chiều ngang chiếm toàn bộ khung
-                    height: "100%", // Chiều cao chiếm toàn bộ khung
-                    objectFit: "cover", // Cắt ảnh để không méo tỷ lệ
-                    borderRadius: "10px", // Bo góc cho hình ảnh
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "10px",
                   }}
                 />
               </div>
               <div
                 className="card-body text-center"
                 style={{
-                  marginTop: "15px", // Tạo khoảng cách giữa ảnh và phần nội dung
+                  marginTop: "15px",
                 }}
               >
                 <h5 className="card-title" style={{ fontSize: "20px" }}>

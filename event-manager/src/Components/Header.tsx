@@ -13,11 +13,11 @@ const Header: React.FC<HeaderProps> = ({ pageTitle, userEmail }) => {
   return (
     <header
       style={{
-        height: "70px", // Chiều cao giảm
+        height: "70px", // Chiều cao của header
         background: "#ffffff", // Màu nền trắng
         display: "flex",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: "center", // Căn giữa theo trục dọc
         padding: "0 20px", // Padding hai bên
         color: "#000000", // Màu chữ đen
         boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Bóng mờ nhẹ
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle, userEmail }) => {
         position: "fixed", // Làm header cố định
         top: 0, // Gắn header vào phía trên
         width: "100%", // Đảm bảo header chiếm toàn bộ chiều ngang
-        zIndex: 1000, // Đặt z-index cao để luôn ở trên các thành phần khác
+        zIndex: 1000, // Z-index cao để luôn hiển thị trên các thành phần khác
       }}
     >
       {/* Bên trái: Logo */}
