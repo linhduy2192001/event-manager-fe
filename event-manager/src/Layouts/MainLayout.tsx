@@ -1,30 +1,27 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Header from "../Components/Header";
+import Footer from "../Components/Footer";
 
 const MainLayout: React.FC = () => {
   return (
     <div>
       {/* Header */}
-      <header>
-        <nav>
-          <h1>Event Management</h1>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/schedule">Schedule</a></li>
-            <li><a href="/forum">Forum</a></li>
-          </ul>
-        </nav>
-      </header>
+      <Header pageTitle="Home" userEmail="kc80943@gmail.com" />
 
-      {/* Main Content */}
-      <main>
-        <Outlet /> {/* Render các trang con */}
+      {/* Nội dung chính */}
+      <main
+        style={{
+          padding: "20px", // Padding nội dung
+          backgroundColor: "#f9f9f9", // Nền nội dung
+          minHeight: "calc(100vh - 250px)", // Đảm bảo nội dung không đè Header và Footer
+        }}
+      >
+        <Outlet />
       </main>
 
       {/* Footer */}
-      <footer>
-        <p>© 2024 Event Management. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

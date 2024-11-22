@@ -1,7 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/HomePage.css";
-
+import "../styles/HomePage.css"; // Import CSS
 const HomePage: React.FC = () => {
   const cards = [
     { title: "Personal", icon: "👤", link: "/personal" },
@@ -23,6 +22,14 @@ const HomePage: React.FC = () => {
                 borderRadius: "15px",
                 cursor: "pointer",
                 transition: "transform 0.2s ease",
+                height: "300px", // Chiều cao của card
+                width: "200px", // Chiều rộng của card
+                margin: "0 auto", // Căn giữa card trong cột
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "#F5F5F5",
               }}
               onMouseEnter={(e) =>
                 (e.currentTarget.style.transform = "scale(1.05)")
@@ -31,17 +38,24 @@ const HomePage: React.FC = () => {
                 (e.currentTarget.style.transform = "scale(1)")
               }
             >
-              <div className="card-body d-flex flex-column align-items-center">
-                <div
-                  style={{
-                    fontSize: "50px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  {card.icon}
-                </div>
-                <h5 className="card-title">{card.title}</h5>
+              <div
+                style={{
+                  fontSize: "70px", // Logo lớn hơn
+                  marginBottom: "20px",
+                }}
+              >
+                {card.icon}
               </div>
+              <h5
+                className="card-title"
+                style={{
+                  fontSize: "24px", // Tăng kích thước title
+                  fontWeight: "bold",
+                  color: "#333",
+                }}
+              >
+                {card.title}
+              </h5>
             </div>
           </div>
         ))}

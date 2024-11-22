@@ -25,7 +25,7 @@ const App: React.FC = () => {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<MainLayout/>}>
-          <Route index element={<HomePage />} />
+          <Route index element={<HomePage/>} />
           {/* <Route path="event/:id" element={<EventDetailsPage />} />
           <Route path="schedule" element={<SchedulePage />} />
           <Route path="forum" element={<ForumPage />} /> */}
