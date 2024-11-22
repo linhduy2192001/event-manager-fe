@@ -1,9 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/HomePage.css"; // Import CSS
+
 const HomePage: React.FC = () => {
+  const navigate = useNavigate(); // Hook điều hướng
+
   const cards = [
-    { title: "Personal", icon: "👤", link: "/personal" },
+    { title: "Personal", icon: "👤", link: "/detailPersonal" },
     { title: "Schedule", icon: "📅", link: "/schedule" },
     { title: "History", icon: "📖", link: "/history" },
     { title: "Event", icon: "🎤", link: "/event" },
@@ -19,11 +23,11 @@ const HomePage: React.FC = () => {
             <div
               className="card shadow-sm"
               style={{
-                borderRadius: "15px",
+                borderRadius: "20px",
                 cursor: "pointer",
                 transition: "transform 0.2s ease",
-                height: "300px", // Chiều cao của card
-                width: "200px", // Chiều rộng của card
+                height: "349px", // Chiều cao của card
+                width: "258px", // Chiều rộng của card
                 margin: "0 auto", // Căn giữa card trong cột
                 display: "flex",
                 flexDirection: "column",
@@ -37,10 +41,11 @@ const HomePage: React.FC = () => {
               onMouseLeave={(e) =>
                 (e.currentTarget.style.transform = "scale(1)")
               }
+              onClick={() => navigate(card.link)} // Điều hướng khi click vào card
             >
               <div
                 style={{
-                  fontSize: "70px", // Logo lớn hơn
+                  fontSize: "100px", // Logo lớn hơn
                   marginBottom: "20px",
                 }}
               >
