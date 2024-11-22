@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import MainLayout from "./Layouts/MainLayout";
-import AuthLayout from "./Layouts/AuthLayout";
-import DashboardLayout from "./Layouts/DashboardLayout";
-import Login from "./pages/Login/LoginPage";
+import MainLayout from "./layouts/MainLayout";
+import AuthLayout from "./layouts/AuthLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
 
 // Import pages
 // import RegisterPage from "./pages/RegisterPage";
@@ -23,16 +24,16 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<MainLayout />}>
-          {/* <Route index element={<HomePage />} />
-          <Route path="event/:id" element={<EventDetailsPage />} />
+        <Route path="/" element={<MainLayout/>}>
+          <Route index element={<HomePage />} />
+          {/* <Route path="event/:id" element={<EventDetailsPage />} />
           <Route path="schedule" element={<SchedulePage />} />
           <Route path="forum" element={<ForumPage />} /> */}
         </Route>
 
         {/* Authentication Routes */}
         <Route path="/auth" element={<AuthLayout />}>
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<LoginPage />} />
           {/* <Route path="register" element={<RegisterPage />} /> */}
         </Route>
 
