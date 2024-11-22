@@ -236,7 +236,9 @@ const ListEvent: React.FC = () => {
                 <td>
                   <button
                     className="btn btn-primary btn-sm"
-                    onClick={() => navigate(`/detailEvent`)}
+                    onClick={() => {
+                      window.location.href = "de/detailEvent"; 
+                    }}
                   >
                     Xem chi tiết
                   </button>

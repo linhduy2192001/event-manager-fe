@@ -10,6 +10,7 @@ import PersonalPage from "./pages/PersonalPage"; // Import PersonalPage
 import DetailPersonal from "./pages/DetailPersonal"; // Import DetailPersonal
 import ListEvent from "./pages/ListEvent";
 import DetailEvent from "./pages/DetailEvent";
+import About from "./pages/About";
 
 const App: React.FC = () => {
   return (
@@ -19,11 +20,13 @@ const App: React.FC = () => {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
           <Route path="new" element={<PersonalPage />} />
+          <Route path="about" element={<About/>} />
+
           <Route path="edit" element={<PersonalPage />} />
           <Route path="detailPersonal" element={<DetailPersonal/>} /> 
           {/* Route Detail */}
           <Route path="ListEvent" element={<ListEvent />}>
-               <Route path="ListEvent/detailEvent" element={<DetailEvent/>} />
+               <Route path="detailEvent" element={<DetailEvent/>} />
           </Route>
           
         </Route>
