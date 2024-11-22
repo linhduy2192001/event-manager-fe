@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface EventData {
@@ -20,7 +20,7 @@ const ListEvent: React.FC = () => {
       id: 1,
       name: "Hội thảo Công nghệ AI",
       type: "Workshop",
-      time: "01/12/2024 - 17:00",
+      time: "2024-12-01T17:00",
       location: "Hội trường A",
       status: "Đang mở",
       participants: "120/200",
@@ -29,7 +29,7 @@ const ListEvent: React.FC = () => {
       id: 2,
       name: "Cuộc thi Lập trình 2024",
       type: "Cuộc thi",
-      time: "05/12/2024 - 12:00",
+      time: "2024-12-05T12:00",
       location: "Phòng họp B",
       status: "Đã đóng",
       participants: "150/150",
@@ -38,10 +38,19 @@ const ListEvent: React.FC = () => {
       id: 3,
       name: "Hội nghị Blockchain",
       type: "Hội nghị",
-      time: "10/12/2024 - 15:30",
+      time: "2024-10-15T15:30",
       location: "Trực tuyến",
       status: "Bị hủy",
       participants: "90/100",
+    },
+    {
+      id: 4,
+      name: "Khóa học lập trình React",
+      type: "Hội thảo",
+      time: "2024-12-20T10:00",
+      location: "Trực tuyến",
+      status: "Đang mở",
+      participants: "50/50",
     },
   ]);
 
@@ -52,6 +61,24 @@ const ListEvent: React.FC = () => {
   const [filterLocation, setFilterLocation] = useState<string>("");
   const [filterStartDate, setFilterStartDate] = useState<string>("");
   const [filterEndDate, setFilterEndDate] = useState<string>("");
+
+  // Hàm tính toán thống kê
+  const statistics = useMemo(() => {
+    const now = new Date();
+    const upcomingEvents = events.filter(
+      (event) => new Date(event.time) > now && event.status !== "Bị hủy"
+    );
+    const pastEvents = events.filter(
+      (event) => new Date(event.time) <= now && event.status !== "Bị hủy"
+    );
+    const canceledEvents = events.filter((event) => event.status === "Bị hủy");
+
+    return {
+      upcoming: upcomingEvents.length,
+      past: pastEvents.length,
+      canceled: canceledEvents.length,
+    };
+  }, [events]);
 
   // Hàm reset các bộ lọc
   const resetFilters = () => {
@@ -69,10 +96,9 @@ const ListEvent: React.FC = () => {
     const matchesType = filterType ? event.type === filterType : true;
     const matchesStatus = filterStatus ? event.status === filterStatus : true;
     const matchesLocation = filterLocation ? event.location === filterLocation : true;
-    // Giả lập logic kiểm tra thời gian
     const matchesTime =
-      (!filterStartDate || new Date(event.time.split(" - ")[0]) >= new Date(filterStartDate)) &&
-      (!filterEndDate || new Date(event.time.split(" - ")[0]) <= new Date(filterEndDate));
+      (!filterStartDate || new Date(event.time) >= new Date(filterStartDate)) &&
+      (!filterEndDate || new Date(event.time) <= new Date(filterEndDate));
     return matchesSearch && matchesType && matchesStatus && matchesLocation && matchesTime;
   });
 
@@ -88,6 +114,34 @@ const ListEvent: React.FC = () => {
 
   return (
     <div className="container my-5">
+      {/* Thống kê */}
+      <div className="row mb-4 text-center">
+        <div className="col-md-4">
+          <div className="card text-white bg-success mb-3">
+            <div className="card-header">Sự kiện sắp diễn ra</div>
+            <div className="card-body">
+              <h5 className="card-title">{statistics.upcoming}</h5>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="card text-white bg-primary mb-3">
+            <div className="card-header">Sự kiện đã diễn ra</div>
+            <div className="card-body">
+              <h5 className="card-title">{statistics.past}</h5>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="card text-white bg-danger mb-3">
+            <div className="card-header">Sự kiện bị hủy</div>
+            <div className="card-body">
+              <h5 className="card-title">{statistics.canceled}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Bộ lọc */}
       <div className="row mb-4">
         <div className="col-md-4 mb-3">
