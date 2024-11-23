@@ -13,6 +13,7 @@ import DetailEvent from "./pages/DetailEvent";
 import About from "./pages/About";
 import TicketOnline from "./pages/TicketOnline";
 import AddEvent from "./pages/AddEvent";
+import SchedulePage from "./pages/SchedulePage";
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,8 @@ const App: React.FC = () => {
           <Route path="new" element={<PersonalPage />} />
           <Route path="about" element={<About/>} />
           <Route path="edit" element={<PersonalPage />} />
+          <Route path="schedule" element={<SchedulePage />} />
+
           <Route path="detailPersonal" element={<DetailPersonal/>} /> 
           <Route path="addevent" element={<AddEvent/>} /> 
 
