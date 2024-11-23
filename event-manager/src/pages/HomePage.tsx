@@ -18,13 +18,13 @@ const HomePage: React.FC = () => {
   ];
 
   const ongoingEvents = [
-    { title: "Music Festival", date: "22 Nov 2024", image: "src/assets/Images/event1.jpg", },
-    { title: "Tech Conference", date: "25 Nov 2024", image: "/src/assets/Images/event1.jpg" },
-    { title: "Art Expo", date: "26 Nov 2024", image: "src/assets/Images/event1.jpgg" },
-    { title: "Startup Fair", date: "28 Nov 2024", image: "src/assets/Images/event1.jpg" },
+    { title: "Music Festival", date: "22 Nov 2024", image: "./assets/Images/event1.jpg", },
+    { title: "Tech Conference", date: "25 Nov 2024", image:  "./assets/Images/event2.jpg" },
+    { title: "Art Expo", date: "26 Nov 2024", image:  "./assets/Images/event3.jpg"},
+    { title: "Startup Fair", date: "28 Nov 2024", image:  "./assets/Images/event3.jpg" },
   ];
 
-  const sliderImages = ["../assets/Images/slider1.jpg", "../assets/Images/slider2.jpg", "../assets/Images/slider2.jpg"];
+  const sliderImages = ["./assets/Images/slider1.jpg", "./assets/Images/slider2.jpg", "./assets/Images/slider3.jpg"];
 
   return (
     <div
