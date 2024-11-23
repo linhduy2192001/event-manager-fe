@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { FaClock, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const DetailEvent: React.FC = () => {
+  const navigate = useNavigate();
+
   // Mock dữ liệu sự kiện
   const [eventDetails] = useState({
     id: 1,
@@ -22,7 +26,6 @@ const DetailEvent: React.FC = () => {
       { name: "Nguyễn Văn A", avatar: "https://via.placeholder.com/100", title: "Giáo sư AI" },
       { name: "Trần Thị B", avatar: "https://via.placeholder.com/100", title: "Chuyên gia AI" },
     ],
-    guests: [{ name: "Lê Văn C", organization: "Tập đoàn ABC", role: "Khách mời đặc biệt" }],
     registered: false, // Trạng thái đăng ký
     ticket: {
       qrCode: "https://via.placeholder.com/150", // Placeholder QR code
@@ -34,91 +37,172 @@ const DetailEvent: React.FC = () => {
     ],
   });
 
+  // Hàm xử lý sự kiện "Đăng ký tham gia"
+  const handleRegister = () => {
+    console.log("Đã đăng ký tham gia!"); // Log kiểm tra
+    navigate("ticket"); // Điều hướng tương đối đến đường dẫn /ticket
+  };
   return (
-    <div className="container my-5">
-      {/* Thông tin chung */}
-      <div className="mb-5">
-        <h1 className="text-center mb-4">{eventDetails.name}</h1>
-        <img src={eventDetails.image} alt={eventDetails.name} className="img-fluid mb-4" />
-        <p>{eventDetails.description}</p>
-        <p>
-          <strong>Thời gian:</strong> {new Date(eventDetails.startTime).toLocaleString()} -{" "}
-          {new Date(eventDetails.endTime).toLocaleString()}
-        </p>
-        <p>
-          <strong>Địa điểm:</strong> {eventDetails.location}
-        </p>
-      </div>
-
-      {/* Lịch trình sự kiện */}
-      <div className="mb-5">
-        <h3 className="mb-3">Lịch trình sự kiện</h3>
-        <ul className="list-group">
-          {eventDetails.schedule.map((item, index) => (
-            <li key={index} className="list-group-item">
-              <strong>{item.time}</strong>: {item.activity} <em>({item.type})</em>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Thông tin diễn giả và khách mời */}
-      <div className="mb-5">
-        <h3 className="mb-3">Thông tin diễn giả</h3>
-        <div className="row">
-          {eventDetails.speakers.map((speaker, index) => (
-            <div key={index} className="col-md-4 text-center">
-              <img
-                src={speaker.avatar}
-                alt={speaker.name}
-                className="rounded-circle mb-2"
-                style={{ width: "100px", height: "100px" }}
-              />
-              <h5>{speaker.name}</h5>
-              <p>{speaker.title}</p>
-            </div>
-          ))}
+    <div
+      style={{
+        fontFamily: "'Raleway', sans-serif",
+        backgroundColor: "#f4f8fb",
+        color: "#333",
+        padding: "20px",
+        display: "flex",
+        justifyContent: "center", // Căn giữa nội dung
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "800px", // Giới hạn chiều rộng tối đa
+          width: "100%",
+          backgroundColor: "#fff",
+          borderRadius: "15px",
+          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          padding: "20px",
+        }}
+      >
+        {/* Banner */}
+        <div
+          style={{
+            backgroundImage: `url(${eventDetails.image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            borderRadius: "15px",
+            overflow: "hidden",
+            height: "250px",
+            position: "relative",
+            marginBottom: "30px",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.6)",
+              color: "#fff",
+              padding: "15px",
+              width: "100%",
+            }}
+          >
+            <h1 style={{ fontSize: "28px", margin: 0 }}>{eventDetails.name}</h1>
+          </div>
         </div>
-        <h3 className="mb-3 mt-4">Khách mời đặc biệt</h3>
-        <ul className="list-group">
-          {eventDetails.guests.map((guest, index) => (
-            <li key={index} className="list-group-item">
-              <strong>{guest.name}</strong> - {guest.organization} ({guest.role})
-            </li>
-          ))}
-        </ul>
-      </div>
 
-      {/* Tương tác */}
-      <div className="mb-5">
-        <h3 className="mb-3">Tương tác</h3>
-        {eventDetails.registered ? (
-          <button className="btn btn-secondary" disabled>
-            Đã đăng ký
-          </button>
-        ) : (
-          <button className="btn btn-primary">Đăng ký tham gia</button>
-        )}
-      </div>
-
-      {/* Vé tham gia */}
-      {eventDetails.registered && (
-        <div className="mb-5">
-          <h3 className="mb-3">Vé tham gia</h3>
-          <img src={eventDetails.ticket.qrCode} alt="QR Code" className="img-fluid mb-2" />
-          <p>{eventDetails.ticket.details}</p>
-          <button className="btn btn-success">Tải vé xuống</button>
+        {/* Giới thiệu */}
+        <div style={{ marginBottom: "30px" }}>
+          <p>{eventDetails.description}</p>
+          <p>
+            <FaClock />{" "}
+            <strong>
+              {new Date(eventDetails.startTime).toLocaleString()} -{" "}
+              {new Date(eventDetails.endTime).toLocaleString()}
+            </strong>
+          </p>
+          <p>
+            <FaMapMarkerAlt /> <strong>{eventDetails.location}</strong>
+          </p>
         </div>
-      )}
 
-      {/* Thông báo */}
-      <div className="mb-5">
-        <h3 className="mb-3">Thông báo</h3>
-        <ul className="list-group">
-          {eventDetails.notifications.map((note, index) => (
-            <li key={index} className="list-group-item">{note}</li>
-          ))}
-        </ul>
+        {/* Timeline */}
+        <div style={{ marginBottom: "30px" }}>
+          <h3 style={{ marginBottom: "20px", color: "#2c3e50" }}>Lịch trình sự kiện</h3>
+          <div
+            style={{
+              borderLeft: "3px solid #007bff",
+              paddingLeft: "15px",
+            }}
+          >
+            {eventDetails.schedule.map((item, index) => (
+              <div key={index} style={{ marginBottom: "20px" }}>
+                <p style={{ margin: 0, fontSize: "18px", color: "#007bff" }}>
+                  {item.time} - {item.activity}
+                </p>
+                <small style={{ color: "#555" }}>
+                  <em>({item.type})</em>
+                </small>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Diễn giả */}
+        <div style={{ marginBottom: "30px" }}>
+          <h3 style={{ marginBottom: "20px", color: "#2c3e50" }}>Diễn giả</h3>
+          <div style={{ display: "flex", gap: "20px" }}>
+            {eventDetails.speakers.map((speaker, index) => (
+              <div key={index} style={{ textAlign: "center" }}>
+                <img
+                  src={speaker.avatar}
+                  alt={speaker.name}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "50%",
+                    marginBottom: "10px",
+                  }}
+                />
+                <p style={{ fontWeight: "bold", margin: 0 }}>{speaker.name}</p>
+                <small style={{ color: "#555" }}>{speaker.title}</small>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tương tác */}
+        <div style={{ marginBottom: "30px", textAlign: "center" }}>
+          {eventDetails.registered ? (
+            <button
+              style={{
+                backgroundColor: "#2ecc71",
+                color: "#fff",
+                padding: "10px 20px",
+                borderRadius: "5px",
+                border: "none",
+                cursor: "not-allowed",
+              }}
+              disabled
+            >
+              <FaCheckCircle /> Đã đăng ký
+            </button>
+          ) : (
+            <button
+              onClick={handleRegister} // Gắn sự kiện onClick
+              style={{
+                backgroundColor: "#007bff",
+                color: "#fff",
+                padding: "10px 20px",
+                borderRadius: "5px",
+                border: "none",
+                cursor: "pointer",
+              }}
+            >
+              Đăng ký tham gia
+            </button>
+          )}
+        </div>
+
+        {/* Thông báo */}
+        <div>
+          <h3 style={{ marginBottom: "20px", color: "#2c3e50" }}>Thông báo</h3>
+          <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+            {eventDetails.notifications.map((note, index) => (
+              <li
+                key={index}
+                style={{
+                  backgroundColor: "#eaf3ff",
+                  marginBottom: "10px",
+                  padding: "10px 15px",
+                  borderRadius: "5px",
+                  color: "#333",
+                }}
+              >
+                {note}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

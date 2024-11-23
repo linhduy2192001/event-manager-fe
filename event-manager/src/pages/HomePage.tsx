@@ -9,9 +9,10 @@ const HomePage: React.FC = () => {
 
   const cards = [
     { title: "Personal", icon: "👤", link: "/detailPersonal" },
+    { title: "AddEvent", icon: "🆕", link: "/addevent" },
     { title: "Schedule", icon: "📅", link: "/schedule" },
     { title: "History", icon: "📖", link: "/history" },
-    { title: "Event", icon: "🎤", link: "/ListEvent" },
+    { title: "Event", icon: "🎤", link: "/Events" },
     { title: "Notifications", icon: "🔔", link: "/notifications" },
     { title: "Feedback", icon: "⭐", link: "/feedback" },
   ];

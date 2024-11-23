@@ -465,7 +465,7 @@ const ListEvent: React.FC = () => {
                       e.currentTarget.style.backgroundColor = "#fff"; // Quay lại nền trắng
                       e.currentTarget.style.color = "#000"; // Quay lại chữ đen
                     }}
-                    onClick={() => navigate(`/events/${event.id}`)}
+                    onClick={() => navigate(`/events/event/${event.id}`)}
                   >
                     Xem chi tiết
                   </button>
