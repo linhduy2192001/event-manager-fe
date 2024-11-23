@@ -1,34 +1,49 @@
-import React, { useState } from "react";
-import { FaClock, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
+import { useState } from "react";
+import { FaCheckCircle, FaClock, FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const DetailEvent: React.FC = () => {
   const navigate = useNavigate();
 
-  // Mock dữ liệu sự kiện
   const [eventDetails] = useState({
     id: 1,
     name: "Hội thảo Công nghệ AI",
     description:
       "Sự kiện này nhằm cung cấp thông tin về công nghệ AI và các ứng dụng trong đời sống, giáo dục, và công nghiệp.",
-    image: "https://via.placeholder.com/800x400", // Placeholder image
+    image: "https://via.placeholder.com/800x400",
     startTime: "2024-12-01T17:00",
     endTime: "2024-12-01T20:00",
     location: "Hội trường A, Trường Đại học XYZ",
     schedule: [
       { time: "17:00", activity: "Khai mạc", type: "Trình bày" },
-      { time: "17:30", activity: "Bài giảng: Giới thiệu về AI", type: "Thảo luận" },
+      {
+        time: "17:30",
+        activity: "Bài giảng: Giới thiệu về AI",
+        type: "Thảo luận",
+      },
       { time: "18:30", activity: "Giải lao", type: "Giải trí" },
-      { time: "19:00", activity: "Bài giảng: Tương lai của AI", type: "Thảo luận" },
+      {
+        time: "19:00",
+        activity: "Bài giảng: Tương lai của AI",
+        type: "Thảo luận",
+      },
       { time: "19:45", activity: "Kết thúc", type: "Trình bày" },
     ],
     speakers: [
-      { name: "Nguyễn Văn A", avatar: "https://via.placeholder.com/100", title: "Giáo sư AI" },
-      { name: "Trần Thị B", avatar: "https://via.placeholder.com/100", title: "Chuyên gia AI" },
+      {
+        name: "Nguyễn Văn A",
+        avatar: "https://via.placeholder.com/100",
+        title: "Giáo sư AI",
+      },
+      {
+        name: "Trần Thị B",
+        avatar: "https://via.placeholder.com/100",
+        title: "Chuyên gia AI",
+      },
     ],
-    registered: false, // Trạng thái đăng ký
+    registered: false,
     ticket: {
-      qrCode: "https://via.placeholder.com/150", // Placeholder QR code
+      qrCode: "https://via.placeholder.com/150",
       details: "Vé tham dự Hội thảo Công nghệ AI",
     },
     notifications: [
@@ -37,11 +52,11 @@ const DetailEvent: React.FC = () => {
     ],
   });
 
-  // Hàm xử lý sự kiện "Đăng ký tham gia"
   const handleRegister = () => {
-    console.log("Đã đăng ký tham gia!"); // Log kiểm tra
-    navigate("ticket"); // Điều hướng tương đối đến đường dẫn /ticket
+    console.log("Đã đăng ký tham gia!");
+    navigate("ticket");
   };
+
   return (
     <div
       style={{
@@ -49,17 +64,18 @@ const DetailEvent: React.FC = () => {
         backgroundColor: "#f4f8fb",
         color: "#333",
         padding: "20px",
+        paddingTop: "80px", // Thêm padding top
         display: "flex",
-        justifyContent: "center", // Căn giữa nội dung
+        justifyContent: "center",
       }}
     >
       <div
         style={{
-          maxWidth: "800px", // Giới hạn chiều rộng tối đa
+          maxWidth: "800px",
           width: "100%",
           backgroundColor: "#fff",
           borderRadius: "15px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          boxShadow: "0 6px 12px rgba(0, 0, 0, 0.1)",
           padding: "20px",
         }}
       >
@@ -70,10 +86,10 @@ const DetailEvent: React.FC = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             borderRadius: "15px",
-            overflow: "hidden",
-            height: "250px",
-            position: "relative",
+            height: "300px",
             marginBottom: "30px",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
           <div
@@ -86,37 +102,50 @@ const DetailEvent: React.FC = () => {
               width: "100%",
             }}
           >
-            <h1 style={{ fontSize: "28px", margin: 0 }}>{eventDetails.name}</h1>
+            <h1
+              style={{
+                fontSize: "28px",
+                fontWeight: "bold",
+                margin: 0,
+              }}
+            >
+              {eventDetails.name}
+            </h1>
           </div>
         </div>
 
         {/* Giới thiệu */}
         <div style={{ marginBottom: "30px" }}>
-          <p>{eventDetails.description}</p>
-          <p>
-            <FaClock />{" "}
+          <p style={{ fontSize: "16px", lineHeight: "1.6" }}>
+            {eventDetails.description}
+          </p>
+          <p style={{ margin: "10px 0", fontSize: "16px" }}>
+            <FaClock style={{ marginRight: "8px" }} />
             <strong>
               {new Date(eventDetails.startTime).toLocaleString()} -{" "}
               {new Date(eventDetails.endTime).toLocaleString()}
             </strong>
           </p>
-          <p>
-            <FaMapMarkerAlt /> <strong>{eventDetails.location}</strong>
+          <p style={{ fontSize: "16px" }}>
+            <FaMapMarkerAlt style={{ marginRight: "8px" }} />{" "}
+            <strong>{eventDetails.location}</strong>
           </p>
         </div>
 
         {/* Timeline */}
         <div style={{ marginBottom: "30px" }}>
-          <h3 style={{ marginBottom: "20px", color: "#2c3e50" }}>Lịch trình sự kiện</h3>
+          <h3 style={{ marginBottom: "20px", color: "#007bff" }}>
+            Lịch trình sự kiện
+          </h3>
           <div
             style={{
-              borderLeft: "3px solid #007bff",
+              borderLeft: "4px solid #007bff",
               paddingLeft: "15px",
             }}
           >
             {eventDetails.schedule.map((item, index) => (
               <div key={index} style={{ marginBottom: "20px" }}>
-                <p style={{ margin: 0, fontSize: "18px", color: "#007bff" }}>
+                <p style={{ margin: 0, fontSize: "18px", fontWeight: "bold" }}>
                   {item.time} - {item.activity}
                 </p>
                 <small style={{ color: "#555" }}>
@@ -129,10 +158,10 @@ const DetailEvent: React.FC = () => {
 
         {/* Diễn giả */}
         <div style={{ marginBottom: "30px" }}>
-          <h3 style={{ marginBottom: "20px", color: "#2c3e50" }}>Diễn giả</h3>
+          <h3 style={{ marginBottom: "20px", color: "#007bff" }}>Diễn giả</h3>
           <div style={{ display: "flex", gap: "20px" }}>
             {eventDetails.speakers.map((speaker, index) => (
-              <div key={index} style={{ textAlign: "center" }}>
+              <div key={index} style={{ textAlign: "center", width: "120px" }}>
                 <img
                   src={speaker.avatar}
                   alt={speaker.name}
@@ -141,6 +170,7 @@ const DetailEvent: React.FC = () => {
                     height: "100px",
                     borderRadius: "50%",
                     marginBottom: "10px",
+                    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
                   }}
                 />
                 <p style={{ fontWeight: "bold", margin: 0 }}>{speaker.name}</p>
@@ -157,25 +187,29 @@ const DetailEvent: React.FC = () => {
               style={{
                 backgroundColor: "#2ecc71",
                 color: "#fff",
-                padding: "10px 20px",
-                borderRadius: "5px",
+                padding: "12px 30px",
+                borderRadius: "8px",
                 border: "none",
                 cursor: "not-allowed",
+                fontSize: "16px",
+                fontWeight: "bold",
               }}
               disabled
             >
-              <FaCheckCircle /> Đã đăng ký
+              <FaCheckCircle style={{ marginRight: "8px" }} /> Đã đăng ký
             </button>
           ) : (
             <button
-              onClick={handleRegister} // Gắn sự kiện onClick
+              onClick={handleRegister}
               style={{
                 backgroundColor: "#007bff",
                 color: "#fff",
-                padding: "10px 20px",
-                borderRadius: "5px",
+                padding: "12px 30px",
+                borderRadius: "8px",
                 border: "none",
                 cursor: "pointer",
+                fontSize: "16px",
+                fontWeight: "bold",
               }}
             >
               Đăng ký tham gia
@@ -185,16 +219,16 @@ const DetailEvent: React.FC = () => {
 
         {/* Thông báo */}
         <div>
-          <h3 style={{ marginBottom: "20px", color: "#2c3e50" }}>Thông báo</h3>
-          <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+          <h3 style={{ marginBottom: "20px", color: "#007bff" }}>Thông báo</h3>
+          <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
             {eventDetails.notifications.map((note, index) => (
               <li
                 key={index}
                 style={{
                   backgroundColor: "#eaf3ff",
                   marginBottom: "10px",
-                  padding: "10px 15px",
-                  borderRadius: "5px",
+                  padding: "15px",
+                  borderRadius: "8px",
                   color: "#333",
                 }}
               >

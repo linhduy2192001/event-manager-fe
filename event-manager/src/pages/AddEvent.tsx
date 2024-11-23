@@ -5,40 +5,33 @@ import { useNavigate } from "react-router-dom";
 const AddEvent: React.FC = () => {
   const navigate = useNavigate();
 
-  // State quản lý thông tin sự kiện
   const [eventDetails, setEventDetails] = useState({
     name: "",
     description: "",
-    eventType: "", // Loại sự kiện
+    eventType: "",
     location: "",
-    image: "",
-    startTime: "",
-    endTime: "",
-    tickets: { total: 0 }, // Số lượng vé phát hành
-    schedule: [{ time: "", activity: "", type: "" }], // Timeline
-    speakers: [{ name: "", avatar: "", title: "" }], // Diễn giả
+    tickets: { total: 0 },
+    schedule: [{ time: "", activity: "", type: "" }],
+    speakers: [{ name: "", avatar: "", title: "" }],
   });
 
-  // Hàm thay đổi thông tin cơ bản
   const handleInputChange = (field: string, value: string | number) => {
     setEventDetails({ ...eventDetails, [field]: value });
   };
 
-  // Hàm thay đổi thông tin tickets.total
   const handleTicketChange = (value: number) => {
     setEventDetails({
       ...eventDetails,
       tickets: {
         ...eventDetails.tickets,
-        total: value, // Chỉ thay đổi trường total trong tickets
+        total: value,
       },
     });
   };
 
-  // Hàm thay đổi timeline
   const handleScheduleChange = (
     index: number,
-    field: keyof typeof eventDetails.schedule[number],
+    field: keyof (typeof eventDetails.schedule)[number],
     value: string
   ) => {
     const updatedSchedule = [...eventDetails.schedule];
@@ -46,77 +39,58 @@ const AddEvent: React.FC = () => {
     setEventDetails({ ...eventDetails, schedule: updatedSchedule });
   };
 
-  // Thêm timeline mới
   const addScheduleItem = () => {
     setEventDetails({
       ...eventDetails,
-      schedule: [...eventDetails.schedule, { time: "", activity: "", type: "" }],
+      schedule: [
+        ...eventDetails.schedule,
+        { time: "", activity: "", type: "" },
+      ],
     });
   };
 
-  // Xóa timeline
   const removeScheduleItem = (index: number) => {
     const updatedSchedule = eventDetails.schedule.filter((_, i) => i !== index);
     setEventDetails({ ...eventDetails, schedule: updatedSchedule });
   };
 
-  // Hàm thay đổi thông tin diễn giả
-  const handleSpeakerChange = (
-    index: number,
-    field: keyof typeof eventDetails.speakers[number],
-    value: string
-  ) => {
-    const updatedSpeakers = [...eventDetails.speakers];
-    updatedSpeakers[index][field] = value;
-    setEventDetails({ ...eventDetails, speakers: updatedSpeakers });
-  };
-
-  // Thêm diễn giả mới
-  const addSpeaker = () => {
-    setEventDetails({
-      ...eventDetails,
-      speakers: [...eventDetails.speakers, { name: "", avatar: "", title: "" }],
-    });
-  };
-
-  // Xóa diễn giả
-  const removeSpeaker = (index: number) => {
-    const updatedSpeakers = eventDetails.speakers.filter((_, i) => i !== index);
-    setEventDetails({ ...eventDetails, speakers: updatedSpeakers });
-  };
-
-  // Lưu sự kiện
   const handleSaveEvent = () => {
     console.log("Event Details:", eventDetails);
-    navigate("/events"); // Chuyển hướng về danh sách sự kiện sau khi lưu
+    navigate("/events");
   };
 
   return (
     <div
       style={{
-        fontFamily: "'Raleway', sans-serif",
-        backgroundColor: "#f4f8fb",
-        color: "#333",
+        fontFamily: "'Roboto', sans-serif",
+        backgroundColor: "#fff",
+        color: "#000",
         padding: "20px",
+        paddingTop: "80px",
         display: "flex",
         justifyContent: "center",
+        minHeight: "100vh",
       }}
     >
       <div
         style={{
-          maxWidth: "800px",
+          maxWidth: "600px",
           width: "100%",
           backgroundColor: "#fff",
-          borderRadius: "15px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
           padding: "20px",
         }}
       >
-        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Thêm Sự Kiện</h1>
+        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+          Thêm Sự Kiện
+        </h1>
 
-        {/* Thông tin cơ bản */}
-        <div style={{ marginBottom: "30px" }}>
-          <label>Tên sự kiện:</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ display: "block", marginBottom: "8px" }}>
+            Tên sự kiện:
+          </label>
           <input
             type="text"
             value={eventDetails.name}
@@ -124,35 +98,41 @@ const AddEvent: React.FC = () => {
             style={{
               width: "100%",
               padding: "10px",
-              marginBottom: "10px",
+              border: "1px solid #000",
               borderRadius: "5px",
-              border: "1px solid #ddd",
+              marginBottom: "15px",
             }}
           />
 
-          <label>Mô tả sự kiện:</label>
+          <label style={{ display: "block", marginBottom: "8px" }}>
+            Mô tả sự kiện:
+          </label>
           <textarea
             value={eventDetails.description}
             onChange={(e) => handleInputChange("description", e.target.value)}
             style={{
               width: "100%",
               padding: "10px",
-              height: "100px",
+              height: "80px",
+              border: "1px solid #000",
               borderRadius: "5px",
-              border: "1px solid #ddd",
             }}
           ></textarea>
+        </div>
 
-          <label>Loại sự kiện:</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ display: "block", marginBottom: "8px" }}>
+            Loại sự kiện:
+          </label>
           <select
             value={eventDetails.eventType}
             onChange={(e) => handleInputChange("eventType", e.target.value)}
             style={{
               width: "100%",
               padding: "10px",
-              marginBottom: "10px",
+              border: "1px solid #000",
               borderRadius: "5px",
-              border: "1px solid #ddd",
+              marginBottom: "15px",
             }}
           >
             <option value="">Chọn loại sự kiện</option>
@@ -161,46 +141,32 @@ const AddEvent: React.FC = () => {
             <option value="seminar">Hội thảo</option>
             <option value="competition">Cuộc thi</option>
           </select>
-
-          <label>Địa điểm:</label>
-          <input
-            type="text"
-            value={eventDetails.location}
-            onChange={(e) => handleInputChange("location", e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ddd",
-            }}
-          />
         </div>
 
-        {/* Vé tham gia */}
-        <div style={{ marginBottom: "30px" }}>
-          <label>Số lượng vé phát hành:</label>
+        <div style={{ marginBottom: "20px" }}>
+          <label style={{ display: "block", marginBottom: "8px" }}>
+            Số lượng vé phát hành:
+          </label>
           <input
             type="number"
             value={eventDetails.tickets.total}
-            onChange={(e) => handleTicketChange(+e.target.value)} // Sử dụng hàm riêng
+            onChange={(e) => handleTicketChange(+e.target.value)}
             style={{
               width: "100%",
               padding: "10px",
+              border: "1px solid #000",
               borderRadius: "5px",
-              border: "1px solid #ddd",
             }}
           />
         </div>
 
-        {/* Timeline */}
-        <div style={{ marginBottom: "30px" }}>
-          <h3 style={{ marginBottom: "10px", color: "#2c3e50" }}>Lịch trình</h3>
+        <div style={{ marginBottom: "20px" }}>
+          <h3 style={{ textAlign: "center" }}>Lịch trình</h3>
           {eventDetails.schedule.map((item, index) => (
             <div
               key={index}
               style={{
                 display: "flex",
-                alignItems: "center",
                 gap: "10px",
                 marginBottom: "10px",
               }}
@@ -208,44 +174,38 @@ const AddEvent: React.FC = () => {
               <input
                 type="time"
                 value={item.time}
-                onChange={(e) => handleScheduleChange(index, "time", e.target.value)}
+                onChange={(e) =>
+                  handleScheduleChange(index, "time", e.target.value)
+                }
                 style={{
+                  flex: "1",
                   padding: "10px",
+                  border: "1px solid #000",
                   borderRadius: "5px",
-                  border: "1px solid #ddd",
                 }}
               />
               <input
                 type="text"
-                placeholder="Nội dung"
+                placeholder="Hoạt động"
                 value={item.activity}
-                onChange={(e) => handleScheduleChange(index, "activity", e.target.value)}
+                onChange={(e) =>
+                  handleScheduleChange(index, "activity", e.target.value)
+                }
                 style={{
-                  width: "100%",
+                  flex: "2",
                   padding: "10px",
+                  border: "1px solid #000",
                   borderRadius: "5px",
-                  border: "1px solid #ddd",
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Loại"
-                value={item.type}
-                onChange={(e) => handleScheduleChange(index, "type", e.target.value)}
-                style={{
-                  padding: "10px",
-                  borderRadius: "5px",
-                  border: "1px solid #ddd",
                 }}
               />
               <button
                 onClick={() => removeScheduleItem(index)}
                 style={{
-                  backgroundColor: "red",
-                  color: "white",
+                  padding: "5px 10px",
+                  backgroundColor: "#ff4d4d",
+                  color: "#fff",
                   border: "none",
                   borderRadius: "5px",
-                  padding: "5px 10px",
                   cursor: "pointer",
                 }}
               >
@@ -256,34 +216,34 @@ const AddEvent: React.FC = () => {
           <button
             onClick={addScheduleItem}
             style={{
-              backgroundColor: "#007bff",
+              width: "100%",
+              padding: "10px",
+              backgroundColor: "#000",
               color: "#fff",
-              padding: "10px 20px",
               borderRadius: "5px",
               border: "none",
               cursor: "pointer",
             }}
           >
-            <FaPlus /> Thêm Hoạt Động
+            <FaPlus /> Thêm Lịch Trình
           </button>
         </div>
 
-        {/* Lưu sự kiện */}
-        <div style={{ textAlign: "center" }}>
-          <button
-            onClick={handleSaveEvent}
-            style={{
-              backgroundColor: "#28a745",
-              color: "#fff",
-              padding: "10px 20px",
-              borderRadius: "5px",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Lưu Sự Kiện
-          </button>
-        </div>
+        <button
+          onClick={handleSaveEvent}
+          style={{
+            width: "100%",
+            padding: "15px",
+            backgroundColor: "#000",
+            color: "#fff",
+            borderRadius: "5px",
+            border: "none",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          Lưu Sự Kiện
+        </button>
       </div>
     </div>
   );

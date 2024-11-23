@@ -141,10 +141,15 @@ const DetailPersonalPage: React.FC = () => {
           width: "300px",
           height: "100px",
         })}
-        {renderField("Thời gian đăng nhập lần đầu", userData.firstLoginTime, "⏰", {
-          width: "500px",
-          height: "120px",
-        })}
+        {renderField(
+          "Thời gian đăng nhập lần đầu",
+          userData.firstLoginTime,
+          "⏰",
+          {
+            width: "500px",
+            height: "120px",
+          }
+        )}
         {renderField("Trạng thái tài khoản", userData.accountStatus, "⚙️", {
           width: "350px",
           height: "100px",

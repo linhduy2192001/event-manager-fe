@@ -20,59 +20,78 @@ const TicketOnline: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundColor: "#f0f4f8", // Nền sáng
+        backgroundColor: "#f0f4f8",
         padding: "20px",
       }}
     >
       <div
         style={{
-          width: "350px",
-          border: "1px solid #ccc",
-          borderRadius: "15px",
+          width: "400px",
+          borderRadius: "20px",
           backgroundColor: "#fff",
           overflow: "hidden",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+          boxShadow: "0 8px 16px rgba(0, 0, 0, 0.15)",
         }}
       >
         {/* Header */}
         <div
           style={{
-            backgroundColor: "#ff4d4f",
+            backgroundColor: "#007bff",
             color: "#fff",
             textAlign: "center",
-            padding: "15px 10px",
-            position: "relative",
+            padding: "20px",
           }}
         >
-          <h3 style={{ fontSize: "22px", fontWeight: "bold", margin: 0 }}>
-            {ticketDetails.eventName.toUpperCase()}
+          <img
+            src={ticketDetails.logo}
+            alt="Event Logo"
+            style={{
+              width: "80px",
+              height: "80px",
+              borderRadius: "50%",
+              marginBottom: "10px",
+              border: "2px solid #fff",
+            }}
+          />
+          <h3
+            style={{
+              fontSize: "24px",
+              fontWeight: "bold",
+              margin: "10px 0 5px",
+            }}
+          >
+            {ticketDetails.eventName}
           </h3>
+          <p style={{ fontSize: "14px", margin: 0 }}>
+            Đừng bỏ lỡ sự kiện đặc biệt này!
+          </p>
         </div>
 
-        {/* Thông tin chính */}
+        {/* Thông tin vé */}
         <div
           style={{
             padding: "20px",
             borderBottom: "1px dashed #ccc",
+            lineHeight: "1.8",
           }}
         >
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Ngày:</strong> {ticketDetails.date}
+          <div>
+            <strong>📅 Ngày:</strong> {ticketDetails.date}
           </div>
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Thời gian:</strong> {ticketDetails.time}
+          <div>
+            <strong>⏰ Thời gian:</strong> {ticketDetails.time}
           </div>
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Địa điểm:</strong> {ticketDetails.location}
+          <div>
+            <strong>📍 Địa điểm:</strong> {ticketDetails.location}
           </div>
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Loại vé:</strong> {ticketDetails.ticketType}
+          <div>
+            <strong>🎟 Loại vé:</strong> {ticketDetails.ticketType}
           </div>
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Tên:</strong> {ticketDetails.attendeeName}
+          <div>
+            <strong>🙋‍♂️ Tên:</strong> {ticketDetails.attendeeName}
           </div>
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Mã vé:</strong> {ticketDetails.ticketId}
+          <div>
+            <strong>🔖 Mã vé:</strong> {ticketDetails.ticketId}
           </div>
         </div>
 
@@ -80,35 +99,36 @@ const TicketOnline: React.FC = () => {
         <div
           style={{
             padding: "20px",
-            backgroundColor: "#f9f9f9",
             textAlign: "center",
+            backgroundColor: "#f9fafc",
           }}
         >
           <img
             src={ticketDetails.qrCode}
             alt="QR Code"
             style={{
-              width: "150px",
-              height: "150px",
+              width: "180px",
+              height: "180px",
               marginBottom: "10px",
             }}
           />
-          <p style={{ fontSize: "12px", color: "#888" }}>
-            Quét mã QR để check-in.
+          <p style={{ fontSize: "14px", color: "#555", margin: 0 }}>
+            Quét mã QR để check-in tại sự kiện.
           </p>
         </div>
 
         {/* Footer */}
         <div
           style={{
-            padding: "10px 15px",
+            padding: "15px",
             backgroundColor: "#f1f1f1",
             textAlign: "center",
             fontSize: "12px",
-            color: "#666",
+            color: "#888",
+            fontWeight: "bold",
           }}
         >
-          © 2024 TDTBOX Envet
+          © 2024 TDTBOX Event | Vé sự kiện được bảo vệ
         </div>
       </div>
     </div>

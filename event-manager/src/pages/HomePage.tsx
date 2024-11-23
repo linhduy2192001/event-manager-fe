@@ -18,13 +18,33 @@ const HomePage: React.FC = () => {
   ];
 
   const ongoingEvents = [
-    { title: "Music Festival", date: "22 Nov 2024", image: "./assets/Images/event1.jpg", },
-    { title: "Tech Conference", date: "25 Nov 2024", image:  "./assets/Images/event2.jpg" },
-    { title: "Art Expo", date: "26 Nov 2024", image:  "./assets/Images/event3.jpg"},
-    { title: "Startup Fair", date: "28 Nov 2024", image:  "./assets/Images/event3.jpg" },
+    {
+      title: "Music Festival",
+      date: "22 Nov 2024",
+      image: "./assets/Images/event1.jpg",
+    },
+    {
+      title: "Tech Conference",
+      date: "25 Nov 2024",
+      image: "./assets/Images/event2.jpg",
+    },
+    {
+      title: "Art Expo",
+      date: "26 Nov 2024",
+      image: "./assets/Images/event3.jpg",
+    },
+    {
+      title: "Startup Fair",
+      date: "28 Nov 2024",
+      image: "./assets/Images/event3.jpg",
+    },
   ];
 
-  const sliderImages = ["./assets/Images/slider1.jpg", "./assets/Images/slider2.jpg", "./assets/Images/slider3.jpg"];
+  const sliderImages = [
+    "./assets/Images/slider1.jpg",
+    "./assets/Images/slider2.jpg",
+    "./assets/Images/slider3.jpg",
+  ];
 
   return (
     <div
@@ -69,31 +89,32 @@ const HomePage: React.FC = () => {
           Explore
         </h2>
         <div
-          className="row"
+          className="explore-container"
           style={{
             display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
+            flexWrap: "nowrap", // Card trên một hàng
+            overflowX: "auto", // Cuộn ngang nếu cần
             gap: "20px",
+            padding: "10px 0", // Padding cho vùng cuộn
+            justifyContent: "center", // Căn giữa
           }}
         >
           {cards.map((card, index) => (
             <div
               key={index}
-              className="card shadow"
+              className="card shadow-sm"
               style={{
-                borderRadius: "15px",
+                minWidth: "150px", // Kích thước nhỏ gọn
+                height: "140px",
+                borderRadius: "10px",
                 cursor: "pointer",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                height: "240px",
-                width: "200px",
-                margin: "0 auto",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 backgroundColor: "#ffffff",
                 border: "1px solid #e0e0e0",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "scale(1.05)";
@@ -107,19 +128,21 @@ const HomePage: React.FC = () => {
               }}
               onClick={() => navigate(card.link)}
             >
+              {/* Icon */}
               <div
                 style={{
-                  fontSize: "40px",
-                  marginBottom: "15px",
-                  color: "#007bff",
+                  fontSize: "30px", // Kích thước icon
+                  marginBottom: "10px",
+                  color: "#333", // Màu đen trắng
                 }}
               >
                 {card.icon}
               </div>
+              {/* Title */}
               <h5
                 className="card-title"
                 style={{
-                  fontSize: "18px",
+                  fontSize: "16px", // Giảm kích thước chữ
                   fontWeight: "bold",
                   color: "#333",
                   textAlign: "center",
