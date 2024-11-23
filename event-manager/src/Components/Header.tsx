@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({ pageTitle, userEmail }) => {
       {/* Bên trái: Logo */}
       <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
         <img
-          src="/src/assets/Images/logo.png"
+          src="./assets/Images/logo.png"
           alt="Logo"
           style={{
             height: "50px", // Chiều cao của logo
