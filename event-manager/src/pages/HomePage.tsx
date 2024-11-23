@@ -1,292 +1,207 @@
-import React, { useState } from "react";
-import { FaPlus, FaTrash } from "react-icons/fa";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/HomePage.css";
+import { Carousel } from "react-bootstrap";
 
-const AddEvent: React.FC = () => {
+const HomePage: React.FC = () => {
   const navigate = useNavigate();
 
-  // State quản lý thông tin sự kiện
-  const [eventDetails, setEventDetails] = useState({
-    name: "",
-    description: "",
-    eventType: "", // Loại sự kiện
-    location: "",
-    image: "",
-    startTime: "",
-    endTime: "",
-    tickets: { total: 0 }, // Số lượng vé phát hành
-    schedule: [{ time: "", activity: "", type: "" }], // Timeline
-    speakers: [{ name: "", avatar: "", title: "" }], // Diễn giả
-  });
+  const cards = [
+    { title: "Personal", icon: "👤", link: "/detailPersonal" },
+    { title: "AddEvent", icon: "🆕", link: "/addevent" },
+    { title: "Schedule", icon: "📅", link: "/schedule" },
+    { title: "History", icon: "📖", link: "/history" },
+    { title: "Event", icon: "🎤", link: "/Events" },
+    { title: "Notifications", icon: "🔔", link: "/notifications" },
+    { title: "Feedback", icon: "⭐", link: "/feedback" },
+  ];
 
-  // Hàm thay đổi thông tin cơ bản
-  const handleInputChange = (field: string, value: string | number) => {
-    setEventDetails({ ...eventDetails, [field]: value });
-  };
+  const ongoingEvents = [
+    { title: "Music Festival", date: "22 Nov 2024", image: "src/assets/Images/event1.jpg", },
+    { title: "Tech Conference", date: "25 Nov 2024", image: "/src/assets/Images/event1.jpg" },
+    { title: "Art Expo", date: "26 Nov 2024", image: "src/assets/Images/event1.jpgg" },
+    { title: "Startup Fair", date: "28 Nov 2024", image: "src/assets/Images/event1.jpg" },
+  ];
 
-  // Hàm thay đổi thông tin tickets.total
-  const handleTicketChange = (value: number) => {
-    setEventDetails({
-      ...eventDetails,
-      tickets: {
-        ...eventDetails.tickets,
-        total: value, // Chỉ thay đổi trường total trong tickets
-      },
-    });
-  };
-
-  // Hàm thay đổi timeline
-  const handleScheduleChange = (
-    index: number,
-    field: keyof typeof eventDetails.schedule[number],
-    value: string
-  ) => {
-    const updatedSchedule = [...eventDetails.schedule];
-    updatedSchedule[index][field] = value;
-    setEventDetails({ ...eventDetails, schedule: updatedSchedule });
-  };
-
-  // Thêm timeline mới
-  const addScheduleItem = () => {
-    setEventDetails({
-      ...eventDetails,
-      schedule: [...eventDetails.schedule, { time: "", activity: "", type: "" }],
-    });
-  };
-
-  // Xóa timeline
-  const removeScheduleItem = (index: number) => {
-    const updatedSchedule = eventDetails.schedule.filter((_, i) => i !== index);
-    setEventDetails({ ...eventDetails, schedule: updatedSchedule });
-  };
-
-  // Hàm thay đổi thông tin diễn giả
-  const handleSpeakerChange = (
-    index: number,
-    field: keyof typeof eventDetails.speakers[number],
-    value: string
-  ) => {
-    const updatedSpeakers = [...eventDetails.speakers];
-    updatedSpeakers[index][field] = value;
-    setEventDetails({ ...eventDetails, speakers: updatedSpeakers });
-  };
-
-  // Thêm diễn giả mới
-  const addSpeaker = () => {
-    setEventDetails({
-      ...eventDetails,
-      speakers: [...eventDetails.speakers, { name: "", avatar: "", title: "" }],
-    });
-  };
-
-  // Xóa diễn giả
-  const removeSpeaker = (index: number) => {
-    const updatedSpeakers = eventDetails.speakers.filter((_, i) => i !== index);
-    setEventDetails({ ...eventDetails, speakers: updatedSpeakers });
-  };
-
-  // Lưu sự kiện
-  const handleSaveEvent = () => {
-    console.log("Event Details:", eventDetails);
-    navigate("/events"); // Chuyển hướng về danh sách sự kiện sau khi lưu
-  };
+  const sliderImages = ["../assets/Images/slider1.jpg", "../assets/Images/slider2.jpg", "../assets/Images/slider2.jpg"];
 
   return (
     <div
+      className="container my-5"
       style={{
-        fontFamily: "'Raleway', sans-serif",
-        backgroundColor: "#f4f8fb",
-        color: "#333",
-        padding: "20px",
-        display: "flex",
-        justifyContent: "center",
+        paddingTop: "80px",
       }}
     >
-      <div
-        style={{
-          maxWidth: "800px",
-          width: "100%",
-          backgroundColor: "#fff",
-          borderRadius: "15px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-          padding: "20px",
-        }}
-      >
-        <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Thêm Sự Kiện</h1>
+      {/* Phần giới thiệu */}
+      <section className="mb-5 text-center">
+        <h1 className="mb-3" style={{ fontSize: "36px", fontWeight: "bold" }}>
+          Welcome to Event Management
+        </h1>
+        <p style={{ fontSize: "18px", color: "#555" }}>
+          Manage your events, schedules, and history all in one place. Stay
+          updated and make the most of your time.
+        </p>
+      </section>
 
-        {/* Thông tin cơ bản */}
-        <div style={{ marginBottom: "30px" }}>
-          <label>Tên sự kiện:</label>
-          <input
-            type="text"
-            value={eventDetails.name}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ddd",
-            }}
-          />
+      {/* Slider hình ảnh */}
+      <section className="mb-5">
+        <Carousel>
+          {sliderImages.map((image, index) => (
+            <Carousel.Item key={index}>
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="d-block w-100"
+                style={{
+                  height: "400px",
+                  objectFit: "cover",
+                }}
+              />
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </section>
 
-          <label>Mô tả sự kiện:</label>
-          <textarea
-            value={eventDetails.description}
-            onChange={(e) => handleInputChange("description", e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              height: "100px",
-              borderRadius: "5px",
-              border: "1px solid #ddd",
-            }}
-          ></textarea>
-
-          <label>Loại sự kiện:</label>
-          <select
-            value={eventDetails.eventType}
-            onChange={(e) => handleInputChange("eventType", e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ddd",
-            }}
-          >
-            <option value="">Chọn loại sự kiện</option>
-            <option value="conference">Hội nghị</option>
-            <option value="workshop">Workshop</option>
-            <option value="seminar">Hội thảo</option>
-            <option value="competition">Cuộc thi</option>
-          </select>
-
-          <label>Địa điểm:</label>
-          <input
-            type="text"
-            value={eventDetails.location}
-            onChange={(e) => handleInputChange("location", e.target.value)}
-            style={{
-              width: "100%",
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ddd",
-            }}
-          />
-        </div>
-
-        {/* Vé tham gia */}
-        <div style={{ marginBottom: "30px" }}>
-          <label>Số lượng vé phát hành:</label>
-          <input
-            type="number"
-            value={eventDetails.tickets.total}
-            onChange={(e) => handleTicketChange(+e.target.value)} // Sử dụng hàm riêng
-            style={{
-              width: "100%",
-              padding: "10px",
-              borderRadius: "5px",
-              border: "1px solid #ddd",
-            }}
-          />
-        </div>
-
-        {/* Timeline */}
-        <div style={{ marginBottom: "30px" }}>
-          <h3 style={{ marginBottom: "10px", color: "#2c3e50" }}>Lịch trình</h3>
-          {eventDetails.schedule.map((item, index) => (
+      {/* Các thẻ chức năng (Explore) */}
+      <section className="mb-5">
+        <h2 className="text-center mb-4" style={{ fontSize: "28px" }}>
+          Explore
+        </h2>
+        <div
+          className="row"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "20px",
+          }}
+        >
+          {cards.map((card, index) => (
             <div
               key={index}
+              className="card shadow"
               style={{
+                borderRadius: "15px",
+                cursor: "pointer",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                height: "240px",
+                width: "200px",
+                margin: "0 auto",
                 display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
-                gap: "10px",
-                marginBottom: "10px",
+                backgroundColor: "#ffffff",
+                border: "1px solid #e0e0e0",
               }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.05)";
+                e.currentTarget.style.boxShadow =
+                  "0 10px 20px rgba(0, 0, 0, 0.2)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow =
+                  "0 4px 10px rgba(0, 0, 0, 0.1)";
+              }}
+              onClick={() => navigate(card.link)}
             >
-              <input
-                type="time"
-                value={item.time}
-                onChange={(e) => handleScheduleChange(index, "time", e.target.value)}
+              <div
                 style={{
-                  padding: "10px",
-                  borderRadius: "5px",
-                  border: "1px solid #ddd",
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Nội dung"
-                value={item.activity}
-                onChange={(e) => handleScheduleChange(index, "activity", e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  border: "1px solid #ddd",
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Loại"
-                value={item.type}
-                onChange={(e) => handleScheduleChange(index, "type", e.target.value)}
-                style={{
-                  padding: "10px",
-                  borderRadius: "5px",
-                  border: "1px solid #ddd",
-                }}
-              />
-              <button
-                onClick={() => removeScheduleItem(index)}
-                style={{
-                  backgroundColor: "red",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "5px",
-                  padding: "5px 10px",
-                  cursor: "pointer",
+                  fontSize: "40px",
+                  marginBottom: "15px",
+                  color: "#007bff",
                 }}
               >
-                <FaTrash />
-              </button>
+                {card.icon}
+              </div>
+              <h5
+                className="card-title"
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  color: "#333",
+                  textAlign: "center",
+                }}
+              >
+                {card.title}
+              </h5>
             </div>
           ))}
-          <button
-            onClick={addScheduleItem}
-            style={{
-              backgroundColor: "#007bff",
-              color: "#fff",
-              padding: "10px 20px",
-              borderRadius: "5px",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            <FaPlus /> Thêm Hoạt Động
-          </button>
         </div>
+      </section>
 
-        {/* Lưu sự kiện */}
-        <div style={{ textAlign: "center" }}>
-          <button
-            onClick={handleSaveEvent}
-            style={{
-              backgroundColor: "#28a745",
-              color: "#fff",
-              padding: "10px 20px",
-              borderRadius: "5px",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            Lưu Sự Kiện
-          </button>
+      <section className="mb-5">
+        <h2 className="text-center mb-4" style={{ fontSize: "28px" }}>
+          Ongoing Events
+        </h2>
+        <div
+          className="row"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "20px",
+          }}
+        >
+          {ongoingEvents.slice(0, 4).map((event, index) => (
+            <div
+              key={index}
+              className="card shadow-sm"
+              style={{
+                borderRadius: "15px",
+                width: "300px",
+                height: "380px",
+                overflow: "hidden",
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "10px",
+              }}
+            >
+              <div
+                style={{
+                  width: "100%",
+                  height: "200px",
+                  overflow: "hidden",
+                  borderRadius: "10px",
+                }}
+              >
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "10px",
+                  }}
+                />
+              </div>
+              <div
+                className="card-body text-center"
+                style={{
+                  marginTop: "15px",
+                }}
+              >
+                <h5 className="card-title" style={{ fontSize: "20px" }}>
+                  {event.title}
+                </h5>
+                <p
+                  className="card-text"
+                  style={{ fontSize: "16px", color: "#666" }}
+                >
+                  {event.date}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 };
 
-export default AddEvent;
+export default HomePage;
